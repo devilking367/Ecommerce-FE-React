@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Dashboard from '../pages/Dashboard';
 import ProductList from '../pages/ProductList';
@@ -6,6 +5,7 @@ import UserListPage from '../pages/UserListPage';
 import BackofficeLayout from '../layout/BackofficeLayout';
 import ProductPage from '../pages/pim/ProductPage';
 import CategoryPage from '../pages/pim/CategoryPage';
+import PostPage from '../pages/pim/PostListPage';
 
 const AppRoutes = () => (
     <Routes>
@@ -17,6 +17,7 @@ const AppRoutes = () => (
             <Route path="pim">
                 <Route path="products" element={<ProductPage />} />
                 <Route path="categories" element={<CategoryPage />} />
+                <Route path="posts" element={<PostPage />} />
             </Route>
         </Route>
     </Routes>

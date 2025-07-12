@@ -1,12 +1,14 @@
 // src/components/Sidebar.tsx
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { MESSAGES } from '../constants/messages';
 
 const menu = [
-  { label: 'Dashboard', path: '/' },
-  { label: 'Product', path: '/pim/products' },
-  { label: 'Category', path: '/pim/categories' },
-  { label: 'User', path: '/users' },
+  { label: MESSAGES.SIDEBAR.DASHBOARD, path: '/' },
+  { label: MESSAGES.SIDEBAR.PRODUCT, path: '/pim/products' },
+  { label: MESSAGES.SIDEBAR.CATEGORY, path: '/pim/categories' },
+  { label: MESSAGES.SIDEBAR.USER, path: '/users' },
+  { label: MESSAGES.SIDEBAR.POST, path: '/pim/posts' },
 ];
 
 export default function Sidebar() {

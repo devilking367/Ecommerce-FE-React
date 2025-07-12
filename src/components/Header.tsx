@@ -1,9 +1,10 @@
 import React from 'react';
+import { MESSAGES } from '../constants/messages';
 
 export default function AppHeader() {
   return (
     <header className="bg-white border-b px-6 h-14 flex items-center">
-      <span className="text-lg font-semibold text-gray-800">Ecommerce Admin</span>
+      <span className="text-lg font-semibold text-gray-800">{MESSAGES.HEADER.TITLE}</span>
     </header>
   );
-} 
+}
