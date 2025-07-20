@@ -6,27 +6,10 @@ import type {
   UpdateUserForm,
   UserFilters 
 } from '../types';
+import type { ApiResponse } from '../constants/apiResponse';
 
 // Type cho response từ API thực tế
-interface ApiUserResponse {
-  success: boolean;
-  data: User[];
-  pagination?: {
-    page: number;
-    limit: number;
-    total: number;
-    totalPages: number;
-  };
-  errorCode: string | null;
-  errorMessage: string | null;
-}
-
-interface ApiSingleUserResponse {
-  success: boolean;
-  data: User;
-  errorCode: string | null;
-  errorMessage: string | null;
-}
+// Đã chuyển ApiResponse sang constants/apiResponse.ts
 
 export class UserService {
   // Get all users with pagination and filters
@@ -41,8 +24,8 @@ export class UserService {
     if (params?.status) queryParams.append('status', params.status);
 
     const url = `${API_CONFIG.BASE_URL}${API_ENDPOINTS.USERS.LIST}?${queryParams.toString()}`;
-    const response = await httpClient.get<ApiUserResponse>(url);
-    
+    const response = await httpClient.get<ApiResponse<User[]>>(url);
+
     // Kiểm tra response format
     if (response.success && response.data) {
       return response.data;
@@ -54,7 +37,7 @@ export class UserService {
   // Get user by ID
   static async getUserById(id: number): Promise<User> {
     const url = `${API_CONFIG.BASE_URL}${API_ENDPOINTS.USERS.DETAIL(id)}`;
-    const response = await httpClient.get<ApiSingleUserResponse>(url);
+    const response = await httpClient.get<ApiResponse<User>>(url);
     
     if (response.success && response.data) {
       return response.data;
@@ -66,7 +49,7 @@ export class UserService {
   // Create new user
   static async createUser(userData: CreateUserForm): Promise<User> {
     const url = `${API_CONFIG.BASE_URL}${API_ENDPOINTS.USERS.CREATE}`;
-    const response = await httpClient.post<ApiSingleUserResponse>(url, userData);
+    const response = await httpClient.post<ApiResponse<User>>(url, userData);
     
     if (response.success && response.data) {
       return response.data;
@@ -78,7 +61,7 @@ export class UserService {
   // Update user
   static async updateUser(id: number, userData: UpdateUserForm): Promise<User> {
     const url = `${API_CONFIG.BASE_URL}${API_ENDPOINTS.USERS.UPDATE(id)}`;
-    const response = await httpClient.put<ApiSingleUserResponse>(url, userData);
+    const response = await httpClient.put<ApiResponse<User>>(url, userData);
     
     if (response.success && response.data) {
       return response.data;

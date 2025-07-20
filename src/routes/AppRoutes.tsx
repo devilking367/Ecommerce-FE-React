@@ -6,11 +6,20 @@ import BackofficeLayout from '../layout/BackofficeLayout';
 import ProductPage from '../pages/pim/ProductPage';
 import CategoryPage from '../pages/pim/CategoryPage';
 import PostPage from '../pages/pim/PostListPage';
+import LoginPage from '../pages/LoginPage';
+import RegisterPage from '../pages/RegisterPage';
+import RequireAuth from '../components/RequireAuth';
 
 const AppRoutes = () => (
     <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
         {/* Route cha có layout */}
-        <Route path="/" element={<BackofficeLayout />}>
+        <Route path="/" element={
+          <RequireAuth>
+            <BackofficeLayout />
+          </RequireAuth>
+        }>
             <Route index element={<Dashboard />} />
             <Route path="products" element={<ProductList />} />
             <Route path="users" element={<UserListPage />} />
